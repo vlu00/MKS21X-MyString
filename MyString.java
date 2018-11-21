@@ -1,22 +1,26 @@
 public class MyString implements CharSequence {
   private char[] data;
   public MyString (CharSequence s) {
-    data = new char (s.length());
+    data = new char [s.length()];
   }
 
-  public charAt(int index) {\
+//needs to throw indexoutofboundsexception
+  public char charAt(int index) {
     return data[index];
   }
 
-  public length() {
-
+  public int length() {
+    return data.length;
   }
 
-  public subSequence(int start, int end) {
+  public CharSequence subSequence(int start, int end) {
+    CharSequence sub = new CharSequence(end-start);
+    for (start < end; start++) {
 
+    }
   }
 
-  public toString() {
+  public String toString() {
 
   }
 }
