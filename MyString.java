@@ -41,21 +41,9 @@ public class MyString implements CharSequence,Comparable<CharSequence>{
     return s;
   }
 
-  public int compareFirst(CharSequence s) {
-    if (this.charAt(0) == s.charAt(0)) {
-      return 0;
-    }
-    if (this.charAt(0) > s.charAt(0)) {
-      return 1;
-    }
-    else {
-      return -1;
-    }
-  }
-
   public int compareTo(CharSequence s) {
     if (s == null) {
-      throw new NullPointerException;
+      throw new NullPointerException();
     }
     if (this.length() != 0 && s.length() == 0) {
       return 1;
@@ -65,14 +53,14 @@ public class MyString implements CharSequence,Comparable<CharSequence>{
     }
     else {
       int c = 0;
-      while (this.length() != 0 && s.length() != 0) {
-        if (this.compareFirst(s) != 0) {
-          c = this.compareFirst(s);
-          s = "";
-        }
-        else {
-          this = this.subSequence(1, this.length());
-          s = s.subSequence(1, s.length());
+      for (int i = 0; i < this.length() && i < s.length(); i++) {
+        if (this.charAt(i) != s.charAt(i)) {
+          if (this.charAt(0) > s.charAt(0)) {
+            return 1;
+          }
+          else {
+            return -1;
+          }
         }
       }
       return c;
