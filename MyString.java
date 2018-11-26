@@ -7,7 +7,6 @@ public class MyString implements CharSequence {
     }
   }
 
-//needs to throw indexoutofboundsexception
   public char charAt(int index) {
     if (index < 0 || index > data.length) {
       throw new IndexOutOfBoundsException("Invalid index");
@@ -22,11 +21,16 @@ public class MyString implements CharSequence {
   }
 
   public CharSequence subSequence(int start, int end) {
-    return toString();
-    //CharSequence sub = new CharSequence();
-    //for (; start < end; start++) {
-
-    //}
+    String s = "";
+    if (start < 0 || end < 0 || start > end || end > data.length) {
+      throw new IndexOutOfBoundsException("Invalid index");
+    }
+    else {
+      for (; end - start != 0; start++ ) {
+        s = s + charAt(start);
+      }
+      return s;
+    }
   }
 
   public String toString() {
