@@ -1,4 +1,4 @@
-public class MyString implements CharSequence {
+public class MyString implements CharSequence,Comparable<CharSequence>{
   private char[] data;
   public MyString (CharSequence s) {
     data = new char [s.length()];
@@ -39,5 +39,43 @@ public class MyString implements CharSequence {
       s = s + charAt(i);
     }
     return s;
+  }
+
+  public int compareFirst(CharSequence s) {
+    if (this.charAt(0) == s.charAt(0)) {
+      return 0;
+    }
+    if (this.charAt(0) > s.charAt(0)) {
+      return 1;
+    }
+    else {
+      return -1;
+    }
+  }
+
+  public int compareTo(CharSequence s) {
+    if (s == null) {
+      throw new NullPointerException;
+    }
+    if (this.length() != 0 && s.length() == 0) {
+      return 1;
+    }
+    if (this.length() == 0 && s.length() != 0) {
+      return 1;
+    }
+    else {
+      int c = 0;
+      while (this.length() != 0 && s.length() != 0) {
+        if (this.compareFirst(s) != 0) {
+          c = this.compareFirst(s);
+          s = "";
+        }
+        else {
+          this = this.subSequence(1, this.length());
+          s = s.subSequence(1, s.length());
+        }
+      }
+      return c;
+    }
   }
 }
